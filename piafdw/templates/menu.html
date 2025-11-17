@@ -32,11 +32,17 @@
                         <div class="producto-card">
                             {% if producto.imagen %}
                                 <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                            {% else %}
+                                {% if producto.imagen_url %}
+                                    <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
+                                {% endif %}
                             {% endif %}
                             <h3>{{ producto.nombre }}</h3>
                             <p>{{ producto.descripcion }}</p>
                             <p class="precio">${{ producto.precio }}</p>
                         </div>
+                    {% empty %}
+                        <p>No hay productos disponibles en este momento.</p>
                     {% endfor %}
                 </div>
             </div>

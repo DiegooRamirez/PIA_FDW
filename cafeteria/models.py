@@ -7,7 +7,7 @@ class Producto(models.Model):
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     disponible = models.BooleanField(default=True)
-    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
+    imagen_url = models.URLField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return f"{self.nombre} - {self.precio}\n\t{self.descripcion}"
