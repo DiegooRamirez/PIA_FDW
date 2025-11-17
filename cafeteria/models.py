@@ -8,3 +8,14 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     disponible = models.BooleanField(default=True)
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre} - {self.precio}\n\t{self.descripcion}"
+    
+class Opinion(models.Model):
+    nombre = models.CharField(max_length=100, verbose_name="Nombre del cliente")
+    comentario = models.TextField(verbose_name="Comentario")
+    fecha = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de publicación")
+
+    def __str__(self):
+        return f"{self.nombre}\n{self.comentario}\n\t\t\t{self.fecha.strftime('%d/%m/%Y')}"

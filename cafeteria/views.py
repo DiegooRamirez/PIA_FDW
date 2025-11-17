@@ -1,5 +1,6 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .models import Opinion
+from .forms import OpinionForm
 # Create your views here.
 
 def index(request): 
@@ -15,4 +16,17 @@ def contacto(request):
     return render(request, "contacto.html")
 
 def opiniones(request):
-    return render(request, "opiniones.html")
+    opiniones = Opinion.objects.all().order_by('-fecha')
+
+    if request.method == 'POST':
+        form = OpinionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('opiniones')  # redirige a la misma página
+    else:
+        form = OpinionForm()
+
+    return render(request, 'opiniones.html', {
+        'opiniones': opiniones,
+        'form': form
+    })

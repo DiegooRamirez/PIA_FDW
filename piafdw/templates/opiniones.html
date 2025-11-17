@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opiniones - Cafetería El Grano</title>
+    <link rel="stylesheet" href="{% static 'css/opiniones.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cafetería El Grano</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'menu' %}">Menú</a></li>
+                    <li><a href="{% url 'sucursales' %}">Sucursales</a></li>
+                    <li><a href="{% url 'opiniones' %}" class="active">Opiniones</a></li>
+                    <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Opiniones dinámicas -->
+        <section class="opiniones">
+            <div class="container">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <div class="opiniones-grid">
+                    {% for op in opiniones %}
+                    <div class="opinion-card">
+                        <p class="nombre"><strong>{{ op.nombre }}</strong></p>
+                        <p class="comentario">“{{ op.comentario }}”</p>
+                        <p class="fecha">{{ op.fecha|date:"d/m/Y H:i" }}</p>
+                    </div>
+                    {% empty %}
+                    <p>No hay opiniones registradas aún.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <hr>
+
+        <!-- Formulario funcional con Django -->
+        <section>
+            <h2>Deja tu opinión</h2>
+            <form method="post" action="{% url 'opiniones' %}">
+                {% csrf_token %}
+                <div>
+                    <label for="{{ form.nombre.id_for_label }}">Tu nombre:</label>
+                    {{ form.nombre }}
+                </div>
+                <div>
+                    <label for="{{ form.comentario.id_for_label }}">Tu opinión:</label>
+                    {{ form.comentario }}
+                </div>
+                <button type="submit">Enviar opinión</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cafetería El Grano. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
