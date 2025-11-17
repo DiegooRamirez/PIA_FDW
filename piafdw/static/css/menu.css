@@ -1,3 +1,170 @@
-* {
-    background-color: blueviolet;
+/* --- Estilos de la Página de Menú --- */
+/* --- Header y Navegación --- */
+header {
+    background-color: #3e2723; /* Marrón muy oscuro */
+    color: #fff;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid #c8a67e; /* Acento dorado/beige */
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0;
+}
+
+/* Ajuste para el H1 como enlace */
+.header-link {
+    text-decoration: none;
+    color: inherit; /* Hereda el color del padre */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav li {
+    margin-left: 1.5rem;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.3rem 0;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #c8a67e;
+}
+
+/* Estilo para el enlace activo en la navegación */
+header nav a.active {
+    color: #c8a67e; /* Color de acento */
+    border-bottom: 2px solid #c8a67e;
+}
+
+
+.menu-page {
+    padding: 2rem 0 4rem 0;
+}
+
+.menu-page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.menu-page-header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.menu-page-header p {
+    font-size: 1.1rem;
+    color: white;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Categorías del Menú */
+.menu-category {
+    margin-bottom: 3.5rem;
+}
+
+.menu-category h3 {
+    font-size: 2rem;
+    color: #3e2723; /* Marrón oscuro */
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ede7e1; /* Beige claro */
+}
+
+/* Lista de Items del Menú */
+.menu-list {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna para el listado */
+    gap: 1.5rem;
+}
+
+/* Item Individual del Menú (Formato Lista) */
+.menu-item-full {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.menu-item-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    background-color: #ede7e1; /* Color placeholder para la imagen */
+    font-size: 0.75rem;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.menu-item-content {
+    flex-grow: 1;
+    padding: 1rem 1.5rem;
+}
+
+.menu-item-content h4 {
+    font-size: 1.2rem;
+    font-family: "Georgia", serif;
+    color: #4a2c2a;
+    margin-bottom: 0.25rem;
+}
+
+.menu-item-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.menu-item-price {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #3e2723;
+    min-width: 100px;
+    text-align: right;
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .menu-item-full {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu-item-image {
+        width: 100%;
+        height: 150px; /* Más altura en móvil */
+    }
+
+    .menu-item-price {
+        text-align: left;
+        padding-top: 0;
+    }
 }
