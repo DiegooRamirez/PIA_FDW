@@ -22,6 +22,15 @@ header h1 {
     margin: 0;
 }
 
+h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    background-color: #422c28;
+    color: white;
+    padding: 10px;
+    margin: 0;
+}
+
 /* Ajuste para el H1 como enlace */
 .header-link {
     text-decoration: none;
