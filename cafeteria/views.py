@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from . import models
 from .models import Opinion
-from .forms import OpinionForm
+from .forms import OpinionForm, ContactoForm
 from .models import Producto
 # Create your views here.
 
@@ -19,7 +19,14 @@ def sucursales(request):
     return render(request, "sucursales.html")
 
 def contacto(request):
-    return render(request, "contacto.html")
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contacto')
+    else:
+        form = ContactoForm()
+    return render(request, "contacto.html", {"form": form})
 
 def opiniones(request):
     opiniones = Opinion.objects.all().order_by('-fecha')

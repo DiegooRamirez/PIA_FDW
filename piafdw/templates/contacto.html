@@ -1,11 +1,91 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/contacto.css' %}">
 </head>
 <body>
-    <h1>contacto</h1>
+    <header>
+        <div class="container">
+            <h1><a href="{% url 'index' %}" class="header-link">Cafetería El Grano</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'menu' %}">Menú</a></li>
+                    <li><a href="{% url 'sucursales' %}">Sucursales</a></li>
+                    <li><a href="{% url 'opiniones' %}">Opiniones</a></li>
+                    <li><a href="{% url 'contacto' %}" class="active">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contact-page">
+        <div class="container">
+            <header class="contact-page-header">
+                <h2>Ponte en Contacto</h2>
+                <p>Envíanos tus dudas, comentarios o reservaciones.</p>
+            </header>
+
+            <div class="contact-wrapper">
+                <div class="contact-form-container">
+                    
+                    <form id="contactForm" class="contact-form" action="{% url 'contacto' %}" method="POST" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="{{ form.nombre.id_for_label }}">Nombre Completo</label>
+                            {{ form.nombre }} <span class="error-message" id="name-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Correo Electrónico</label>
+                            {{ form.email }}
+                            <span class="error-message" id="email-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.asunto.id_for_label }}">Asunto</label>
+                            {{ form.asunto }}
+                            <span class="error-message" id="asunto-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.mensaje.id_for_label }}">Mensaje</label>
+                            {{ form.mensaje }} <span class="error-message" id="message-error"></span>
+                        </div>
+                        
+                        <button type="submit" class="form-submit-btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+
+                <aside class="contact-info-container">
+                    <div class="contact-info-item">
+                        <h3>Visítanos</h3>
+                        <p>Av. Siempre Viva 123<br>Col. Centro, C.P. 06000<br>Ciudad Ejemplo</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <h3>Horario</h3>
+                        <p>Lunes a Sábado<br>7:00 a.m. - 9:00 p.m.</p>
+                        <p>Domingo<br>9:00 a.m. - 7:00 p.m.</p>
+                    </div>
+                    <div id="map-placeholder">
+                        <p>Espacio para Mapa</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cafetería El Grano. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/contacto.js' %}" defer></script>
 </body>
 </html>

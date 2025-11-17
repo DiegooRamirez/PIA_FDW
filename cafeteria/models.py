@@ -19,3 +19,14 @@ class Opinion(models.Model):
 
     def __str__(self):
         return f"{self.nombre}\n{self.comentario}\n\t\t\t{self.fecha.strftime('%d/%m/%Y')}"
+    
+class Contacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    asunto = models.CharField(max_length=200)
+    mensaje = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    leido = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.asunto} - {self.nombre}"
