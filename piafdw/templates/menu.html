@@ -1,11 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menú - Cafetería El Grano</title>
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 </head>
 <body>
@@ -22,6 +22,26 @@
             </nav>
         </div>
     </header>
+
+    <main>
+        <section class="menu">
+            <div class="container">
+                <h2>Nuestros Productos</h2>
+                <div class="menu-grid">
+                    {% for producto in productos %}
+                        <div class="producto-card">
+                            {% if producto.imagen %}
+                                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                            {% endif %}
+                            <h3>{{ producto.nombre }}</h3>
+                            <p>{{ producto.descripcion }}</p>
+                            <p class="precio">${{ producto.precio }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">

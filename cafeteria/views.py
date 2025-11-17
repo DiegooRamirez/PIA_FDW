@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from . import models
 from .models import Opinion
 from .forms import OpinionForm
 # Create your views here.
@@ -7,7 +8,10 @@ def index(request):
     return render(request, "index.html")
 
 def menu(request):
-    return render(request, "menu.html")
+    datos={
+        "productos":models.Producto.objects.all()
+        }
+    return render(request, "menu.html", context=datos)
 
 def sucursales(request):
     return render(request, "sucursales.html")
