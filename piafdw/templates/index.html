@@ -1,12 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Cafetería El Grano</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
@@ -37,26 +36,20 @@
             <div class="container">
                 <h2>Especiales de la Casa</h2>
                 <div class="menu-grid">
-                    <div class="menu-item">
-                        <h3>Espresso Intenso</h3>
-                        <p>Un shot puro y robusto de nuestro café de origen seleccionado. La base de todo.</p>
-                        <span class="price">$35.00</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Capuchino Cremoso</h3>
-                        <p>Equilibrio perfecto entre espresso, leche vaporizada y una espuma de leche sedosa.</p>
-                        <span class="price">$55.00</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Latte Macchiato</h3>
-                        <p>Leche vaporizada "manchada" con un toque de espresso, ideal para una tarde suave.</p>
-                        <span class="price">$60.00</span>
-                    </div>
-                    <div class="menu-item">
-                        <h3>Muffin de Arándanos</h3>
-                        <p>Recién horneado, esponjoso y lleno de sabor. El compañero ideal para tu bebida.</p>
-                        <span class="price">$45.00</span>
-                    </div>
+                    {% for producto in ultimos_productos %}
+                        <div class="menu-item">
+                            {% if producto.imagen %}
+                                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                            {% elif producto.imagen_url %}
+                                <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
+                            {% endif %}
+                            <h3>{{ producto.nombre }}</h3>
+                            <p>{{ producto.descripcion }}</p>
+                            <span class="price">${{ producto.precio }}</span>
+                        </div>
+                    {% empty %}
+                        <p>No hay productos disponibles en este momento.</p>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -68,13 +61,13 @@
             </div>
         </section>
 
-        <section id="contacto" class="contact">
-            <div class="container">
-                <h2>Encuéntranos</h2>
-                <p>Visítanos en Av. Siempre Viva 123, Col. Centro.</p>
-                <p><strong>Horario:</strong> Lunes a Sábado de 7:00 a.m. a 9:00 p.m.</p>
-            </div>
-        </section>
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2>Encuéntranos</h2>
+            <p><strong>Horario:</strong> Lunes a Sábado de 7:00 a.m. a 9:00 p.m.</p>
+            <a href="{% url 'sucursales' %}" class="cta-button">Ver Sucursales</a>
+        </div>
+</section>
     </main>
 
     <footer>

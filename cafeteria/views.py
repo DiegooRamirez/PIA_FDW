@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 from . import models
 from .models import Opinion
 from .forms import OpinionForm
+from .models import Producto
 # Create your views here.
 
 def index(request): 
-    return render(request, "index.html")
+    ultimos_productos = Producto.objects.order_by('-id')[:3]
+    return render(request, "index.html", {"ultimos_productos": ultimos_productos})
 
 def menu(request):
     datos={
