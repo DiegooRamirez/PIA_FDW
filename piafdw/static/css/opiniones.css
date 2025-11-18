@@ -5,11 +5,15 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fdfaf6; /* Blanco cálido */
-    color: #333;
     line-height: 1.6;
+    background-color: #fdfaf6; /* Blanco hueso cálido */
+    color: #333;
 }
 
 .container {
@@ -20,7 +24,13 @@ body {
 
 h1, h2, h3 {
     font-family: "Georgia", "Times New Roman", Times, serif;
-    color: #4a2c2a;
+    color: #4a2c2a; /* Marrón oscuro */
+}
+
+h2 {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 /* --- Header --- */
@@ -42,6 +52,8 @@ header .container {
 
 header h1 {
     font-size: 1.8rem;
+    color: #fff;
+    margin: 0;
 }
 
 header nav ul {
@@ -54,9 +66,10 @@ header nav li {
 }
 
 header nav a {
-    color: #fff;
     text-decoration: none;
+    color: #fff;
     font-weight: 600;
+    padding: 0.3rem 0;
     transition: color 0.3s ease;
 }
 
@@ -67,7 +80,14 @@ header nav a:hover {
 /* --- Sección Opiniones --- */
 .opiniones {
     padding: 4rem 0;
-    background-color: #fff;
+    background-color: #ede7e1; /* Beige claro para contraste */
+}
+
+.opiniones h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #4a2c2a;
 }
 
 .opiniones-grid {
@@ -83,15 +103,17 @@ header nav a:hover {
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .opinion-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
 .opinion-card .nombre {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
     color: #3e2723;
 }
 
@@ -99,6 +121,7 @@ header nav a:hover {
     font-style: italic;
     margin: 1rem 0;
     color: #555;
+    line-height: 1.4;
 }
 
 .opinion-card .fecha {
@@ -109,12 +132,19 @@ header nav a:hover {
 
 /* --- Formulario de Opiniones --- */
 form {
-    background-color: #ede7e1;
+    background-color: #fff;
     padding: 2rem;
     border-radius: 10px;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 3rem auto 0 auto;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border: 1px solid #ddd;
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #4a2c2a;
 }
 
 form div {
@@ -135,6 +165,13 @@ form textarea {
     border-radius: 6px;
     border: 1px solid #bbb;
     font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #6d4c41;
+    outline: none;
 }
 
 form textarea {
@@ -150,30 +187,31 @@ button[type="submit"] {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     display: block;
     margin: 0 auto;
 }
 
 button[type="submit"]:hover {
     background-color: #6d4c41;
+    transform: scale(1.05);
 }
 
 /* --- Footer --- */
 footer {
     background-color: #3e2723;
-    color: #fff;
+    color: #fdfaf6;
     text-align: center;
     padding: 1.5rem 0;
     margin-top: 3rem;
 }
 
-/* Evita subrayado y asegura color consistente */
-.logo-link,
-.logo-link:link,
-.logo-link:visited,
-.logo-link:hover,
-.logo-link:active {
-    color: #fff !important;
-    text-decoration: none !important;
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: inherit;
+}
+
+.logo-link:hover {
+    color: #c8a67e;
 }
