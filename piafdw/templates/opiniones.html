@@ -11,12 +11,14 @@
 <body>
     <header>
         <div class="container">
-            <h1>Cafetería El Grano</h1>
+            <h1>
+                <a href="{% url 'index' %}" class="logo-link">Cafetería El Grano</a>
+            </h1>
             <nav>
                 <ul>
                     <li><a href="{% url 'menu' %}">Menú</a></li>
                     <li><a href="{% url 'sucursales' %}">Sucursales</a></li>
-                    <li><a href="{% url 'opiniones' %}" class="active">Opiniones</a></li>
+                    <li><a href="{% url 'opiniones' %}">Opiniones</a></li>
                     <li><a href="{% url 'contacto' %}">Contacto</a></li>
                 </ul>
             </nav>
@@ -41,10 +43,11 @@
                 </div>
             </div>
         </section>
+
         <hr>
 
         <!-- Formulario funcional con Django -->
-        <section>
+        <section class="form-section">
             <h2>Deja tu opinión</h2>
             <form method="post" action="{% url 'opiniones' %}">
                 {% csrf_token %}

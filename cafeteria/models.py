@@ -49,3 +49,14 @@ class Sucursal(models.Model):
 
     def __str__(self):
         return f"{self.nombre}\n{self.calle}, {self.colonia}\n{self.ciudad}\n{self.codigoPostal}"
+
+class Evento(models.Model):
+    titulo = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    fecha = models.DateField()
+    hora = models.TimeField()
+    sucursal = models.ForeignKey('Sucursal', on_delete=models.CASCADE, related_name='eventos')
+    fecha_registro = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.titulo} - {self.fecha.strftime('%d/%m/%Y')}\n({self.sucursal.nombre})"

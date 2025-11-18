@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucursales - Cafetería El Grano</title>
+    <link rel="stylesheet" href="{% static 'css/sucursales.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <a href="{% url 'index' %}" class="logo-link">Cafetería El Grano</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'menu' %}">Menú</a></li>
+                    <li><a href="{% url 'sucursales' %}">Sucursales</a></li>
+                    <li><a href="{% url 'opiniones' %}">Opiniones</a></li>
+                    <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="branches">
+            <div class="container">
+                <h2>Nuestras Sucursales y Eventos</h2>
+                <div class="branch-grid">
+                    {% for sucursal in sucursales %}
+                        <div class="branch-card">
+                            <h3>{{ sucursal.nombre }}</h3>
+                            <p><strong>Calle:</strong> {{ sucursal.calle }}</p>
+                            <p><strong>Colonia:</strong> {{ sucursal.colonia }}</p>
+                            <p><strong>Ciudad:</strong> {{ sucursal.ciudad }}</p>
+                            <p><strong>Código Postal:</strong> {{ sucursal.codigoPostal }}</p>
+                            <p><strong>Teléfono:</strong> {{ sucursal.telefono }}</p>
+
+                            {% with sucursal.eventos.all as eventos_sucursal %}
+                                {% if eventos_sucursal %}
+                                    <div class="eventos">
+                                        <h4>Próximos eventos:</h4>
+                                        <ul>
+                                            {% for evento in eventos_sucursal %}
+                                                <li>
+                                                    <strong>{{ evento.titulo }}</strong><br>
+                                                    {{ evento.fecha|date:"d/m/Y" }} a las {{ evento.hora|time:"H:i" }}<br>
+                                                    {{ evento.descripcion }}
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% else %}
+                                    <p><em>No hay eventos programados en esta sucursal.</em></p>
+                                {% endif %}
+                            {% endwith %}
+                        </div>
+                    {% empty %}
+                        <p>No hay sucursales registradas.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cafetería El Grano. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

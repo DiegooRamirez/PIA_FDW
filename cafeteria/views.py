@@ -3,6 +3,8 @@ from . import models
 from .models import Opinion
 from .forms import OpinionForm, ContactoForm
 from .models import Producto
+from .models import Sucursal
+from .models import Evento
 # Create your views here.
 
 def index(request): 
@@ -16,7 +18,12 @@ def menu(request):
     return render(request, "menu.html", context=datos)
 
 def sucursales(request):
-    return render(request, "sucursales.html")
+    sucursales = Sucursal.objects.all()
+    eventos = Evento.objects.select_related('sucursal').order_by('fecha', 'hora')
+    return render(request, 'sucursales.html', {
+        'sucursales': sucursales,
+        'eventos': eventos
+    })
 
 def contacto(request):
     if request.method == 'POST':

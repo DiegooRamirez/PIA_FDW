@@ -1,6 +1,8 @@
 from django.contrib import admin
+from .models import Auto, Sucursal, Producto, Evento, Opinion
 
-from .models import Producto, Contacto
-
+admin.site.register(Auto)
+admin.site.register(Sucursal)
 admin.site.register(Producto)
-admin.site.register(Contacto)
+admin.site.register(Evento)
+admin.site.register(Opinion)
